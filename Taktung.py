@@ -44,22 +44,28 @@ def concatenate(list_of_lists):
 
 #repack a list of numbers(durations) into sub-arrays of given sum
 def reframe(a, summe=3):
+    print(a)
     main_out=[]
     out=[]
     counter=0
     for i in a:
         out.append(i)
-        if sum(out)>=summe:
+        #print("block_1", counter, i, out)
+        if sum(out)>=summe and not counter==len(a)-1:
             main_out.append(out)
             if not counter==len(a)-1: #when it's last element, keep it to append
+                #print("block_2:1",counter, i, out)
                 out=[]
             else:
                 pass
+            #print("block_2:2", counter, i, out)
         if counter==len(a)-1: #this to append the uncompleted rest into the array
-            if sum(out)<2 and sum(main_out[len(main_out)-1])<=4: #if shorter than two beats append it to the last frame
+            if sum(out)<2 and sum(main_out[len(main_out)-1])<=3: #if shorter than two beats append it to the last frame
+                #print("block_3:1", counter, i, out)
                 out=concatenate([main_out[len(main_out)-1], out])
                 main_out[len(main_out)-1]=out
             else: #if longer than 2 beats pack it as a seperate frame
+                #print("block_3:2", counter, i, out)
                 main_out.append(out)
         counter+=1
     return main_out
