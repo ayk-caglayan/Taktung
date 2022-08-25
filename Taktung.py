@@ -1,13 +1,14 @@
 #written by Aykut Caglayan 2021
 
 # a range which runs on floating steps
+#returns an array of numbers ranging from a to b, steps up at given step value
 def my_range(a,b,step):
-    ruler=[a]
+    ruler=[]
     start=a
     stop=b
-    while a<=b:
-        a+=step
+    while a<b:
         ruler.append(round(a, 3))
+        a+=step
     return ruler
 
 #replaces x with y in the list a
